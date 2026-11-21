@@ -1,0 +1,134 @@
+:root {
+  --bg: #0a0f1c;
+  --panel: #111a2e;
+  --panel-2: #16213c;
+  --border: #24304d;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --red: #f87171;
+  --green: #4ade80;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+}
+.app { max-width: 1400px; margin: 0 auto; padding: 16px 20px 40px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+h1 { font-size: 20px; margin: 8px 0; }
+h3 { font-size: 14px; margin: 0 0 10px; color: var(--accent); }
+.tabs { display: flex; gap: 8px; }
+button {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+button:hover { border-color: var(--accent); }
+button.active { background: var(--accent); color: #06222e; border-color: var(--accent); font-weight: 600; }
+button.primary { background: #0369a1; border-color: #0ea5e9; color: #fff; font-weight: 600; }
+.controls {
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  background: var(--panel); border: 1px solid var(--border);
+  padding: 12px 16px; border-radius: 10px; margin: 14px 0;
+}
+.controls label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+select, input {
+  background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 13px;
+}
+input[type='number'] { width: 90px; }
+
+/* 编辑页 */
+.editor { display: grid; grid-template-columns: 320px 1fr; gap: 16px; }
+.editor-side { display: flex; flex-direction: column; gap: 14px; }
+.seg { display: flex; gap: 6px; }
+.seg button { flex: 1; }
+.cfg-card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.cfg-card table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.cfg-card td { padding: 4px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
+.cfg-card td:last-child { text-align: right; color: var(--text); font-weight: 600; }
+.hint { font-size: 11px; color: var(--muted); line-height: 1.5; margin: 8px 0 0; }
+.roster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.roster-item {
+  background: var(--panel-2); border-radius: 6px; padding: 6px 8px;
+  display: flex; flex-direction: column; gap: 2px; font-size: 11px;
+}
+.roster-item b { color: var(--accent); font-size: 12px; }
+.roster-item span { color: var(--muted); }
+.editor-tree {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px; max-height: 78vh; overflow: auto;
+}
+.empty {
+  background: var(--panel); border: 1px dashed var(--border); border-radius: 10px;
+  padding: 40px; color: var(--muted); text-align: center;
+}
+
+/* 行为树节点 */
+.tn-node { position: relative; }
+.tn-card {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: var(--panel-2); border: 1px solid var(--border);
+  border-left-width: 4px; border-radius: 8px; padding: 8px 10px; margin: 6px 0;
+}
+.tn-card.tn-active { box-shadow: 0 0 0 2px var(--accent); background: #1b2c4d; }
+.tn-kind {
+  color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 5px;
+  white-space: nowrap; font-weight: 600;
+}
+.tn-label { font-weight: 600; font-size: 13px; }
+.tn-desc { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.tn-params { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+.tn-param {
+  font-size: 10px; background: #0b1626; border: 1px solid var(--border);
+  padding: 1px 6px; border-radius: 4px; color: var(--green);
+}
+.tn-children { border-left: 1px dashed var(--border); padding-left: 6px; }
+
+/* 复盘页 */
+.replay { display: grid; grid-template-columns: 600px 1fr; gap: 16px; align-items: start; }
+.map-canvas { width: 560px; height: 560px; border-radius: 10px; border: 1px solid var(--border); background: #0b1220; }
+.timeline { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.timeline input[type='range'] { flex: 1; }
+.tick-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.sector-bar { display: flex; gap: 6px; margin-top: 12px; }
+.sector-cell {
+  flex: 1; background: var(--panel); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 4px; text-align: center;
+}
+.sector-name { font-size: 11px; color: var(--muted); }
+.sector-meter { height: 48px; display: flex; align-items: flex-end; justify-content: center; margin-top: 4px; }
+.sector-fill { width: 70%; background: linear-gradient(180deg, var(--red), #7f1d1d); border-radius: 3px 3px 0 0; min-height: 2px; transition: height 0.15s; }
+.replay-side { display: flex; flex-direction: column; gap: 14px; max-height: 80vh; overflow: auto; }
+.trace-list, .event-list { display: flex; flex-direction: column; gap: 6px; max-height: 280px; overflow: auto; }
+.trace-item {
+  background: var(--panel-2); border-radius: 6px; padding: 6px 8px; font-size: 12px;
+  border-left: 3px solid var(--border);
+}
+.trace-success { border-left-color: var(--green); }
+.trace-failure { border-left-color: var(--red); }
+.trace-running { border-left-color: #facc15; }
+.trace-tick, .event-tick { color: var(--accent); font-family: monospace; margin-right: 8px; }
+.trace-label { font-weight: 600; }
+.trace-status { float: right; color: var(--muted); font-size: 11px; }
+.trace-evidence { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; font-size: 11px; color: var(--green); }
+.event-item { font-size: 12px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.event-defender .event-detail { color: #7dd3fc; }
+.event-attacker .event-detail { color: #fca5a5; }
+.step-list { margin: 0; padding-left: 18px; font-size: 12px; line-height: 1.9; }
+.step-done { color: var(--green); }
+.step-active, .step-running { color: #facc15; }
+.step-pending { color: var(--muted); }
+.step-failed { color: var(--red); }
+.step-deps { color: var(--muted); font-size: 11px; }
